@@ -1,93 +1,48 @@
 # The Harbor website
 
-This repo houses the assets used to build the Harbor website, available at https://goharbor.io.
+Sito Web su Ostana, un borgo in Piemonte
 
 ## Tools
 
-The website is built and developed using the [Hugo](https://gohugo.io/) static site generator.
+Il sito web che sto consegnando è stato sviluppato utilizzando le più recenti tecnologie web, tra cui Bootstrap, CSS, HTML e JavaScript. Bootstrap è stato utilizzato per creare un layout responsive e moderno, che si adatta perfettamente a tutti i dispositivi, dai computer desktop ai dispositivi mobili. CSS è stato utilizzato per personalizzare l'aspetto del sito, dai colori alle font, mentre HTML è stato utilizzato per strutturare il contenuto del sito.
 
-Instructions for installing Hugo can be found [here](https://gohugo.io/getting-started/installing/). Use the version of Hugo specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](./netlify.toml) configuration file, and make sure to install the "extended" version of Hugo with support for [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/).
+Il sito include anche una serie di funzionalità dinamiche, come form di contatto, gallerie di immagini e animazioni, che sono state implementate utilizzando JavaScript. Il sito è stato progettato per essere facile da navigare e per offrire un'esperienza utente fluida e intuitiva.
 
-[backport](https://github.com/sqren/backport) is used to backport PRs into different release branches.
+Il sito web che ho consegnato è una combinazione perfetta di design accattivante, preso da Bootstrap e funzionalità avanzate. Con Bootstrap, CSS, HTML e JavaScript, ho creato un sito web moderno e dinamico, che può aiutare Ostana farsi conoscere, e che si adatta perfettamente a tutti i dispositivi offrendo un'esperienza utente fluida e intuitiva. Inoltre, è stato progettato per essere facile da gestire e da aggiornare in futuro.
 
-## Website content
+## Contenuto del sito
 
-The content for the [Harbor blog](https://goharbor.io/blog) is in [`content/blog`](./content/blog), while the content for the Harbor documentation is in the [`docs`](./docs) folder.
+Il borgo di Ostana è una vera e propria perla nascosta nelle Alpi del Piemonte, con una bellezza naturale incontaminata e una ricca storia e cultura. Il sito web che sto consegnando è stato progettato per aiutare i visitatori a scoprire questo luogo incantevole e a pianificare il loro viaggio.
 
-The latest (edge) version of the documentation lives in the [`docs`](./docs) folder on the `main` branch, and is always viewable on https://goharbor.io/docs/edge. Documentation for specific released versions lives in its own release branch, for example `release-2.1.0`.
+Il sito include informazioni dettagliate sugli eventi locali in programma, come manifestazioni culturali, concerti e sagre, per permettere ai visitatori di immergersi nella vita e nella tradizione di Ostana. Inoltre, ci sono informazioni sui luoghi d'interesse da visitare, come chiese, castelli e musei, per scoprire la storia e la cultura del borgo. Il sito offre anche una sezione dedicata agli alloggi e ai ristoranti per aiutare i visitatori a trovare l'opzione più adatta alle loro esigenze.
 
-### Creating a PR
+Per gli amanti della natura, il sito include anche informazioni su attività all'aria aperta come escursioni, sport e passeggiate, per aiutare i visitatori a sfruttare al meglio la bellezza naturale di Ostana. Ci sono anche informazioni sui sentieri e sui percorsi escursionistici, per aiutare i visitatori a pianificare la loro avventura.
 
-In general, all PRs should be made against the `main` branch to update the edge version of the docs. If you are making a change that also affects released versions, indicate which release branches to update in your PR so a website maintainer can backport your changes.
+In sintesi, questo sito web è una guida completa per chi vuole scoprire Ostana e le sue bellezze. Include tutte le informazioni necessarie per pianificare un viaggio indimenticabile, dalle attività culturali alle escursioni all'aria aperta, dalla sistemazione agli alloggi e ristoranti. Il sito è stato progettato per essere facile da navigare e per fornire informazioni accurate e aggiornate, per aiutare i visitatori a scoprire Ostana in modo semplice ed efficiente.
 
-If you are making a change that is specific to a single released version of documentation, make a PR against that branch (`release-X`). For example, if you are fixing something specific to v2.1.0 you should make a PR against the release-2.1.0 branch only. If you are fixing something that impacts v2.1.0 docs and all future versions, you should make the PR against the `main` branch so the change can also be backported to the v2.1.0 docs.
+## Utilizza Tu il sito (LINUX)
 
-A preview of your changes is viewable through the Netlify preview linked in the PR tests. Use this to verify that your changes look good before asking the maintainers for a review. When updating the edge version make sure you add `/docs/edge/` to the preview URL to see your changes.
-
-### Creating release docs
-
-When creating docs for a new release, please create a branch with the format `release-X.Y.Z`.
-When you want to make these docs available through the dropdown menu, put the following into the `config.toml` file, above all other versions (versions are linked based on order in the config file):
-
-```
-[[params.versions]]
-harborversion = "X.Y.Z"
-helmversion = "1.3"
-branchname = "release-X.Y.Z"
-```
-
-As last step, update the [_index.md](https://github.com/goharbor/website/blob/master/docs/_index.md) file with the new version number and correct links.
-
-
-After a release, update the [backport](https://github.com/sqren/backport) tool configuration file, `.backportrc.json`, with the new release branch name.
-
-### CSS
-
-The CSS for the site is built from [Sass](https://sass-lang.com) inputs in the [`assets/sass`](./assets/sass) directory. There is also a small amount of JavaScript logic for the site in [`assets/js/app.js`](./assets/js/app.js).
-
-## Publishing the website
-
-The Harbor website is published automatically on the [Netlify](https://netlify.com) platform. Whenever changes are merged, the site is re-built and re-deployed, usually within about one minute.
-
-## Run the Harbor website locally
-
-### Step 1: Clone project
+### Step 1: Clona il progetto
 
 ```sh
 git clone https://github.com/goharbor/website.git
 cd website
 ```
 
-## Step 2: Load documentation content
-
-The Markdown content for the Harbor [docs](https://goharbor.io/docs) is drawn from the [`docs`](./docs) folder and the `release-X` branches. To pull that content into your local website repo:
+## Step 2: Installa Apache2
 
 ```sh
-make prepare
+sudo apt install apache2
 ```
 
-This copies the `docs` directory and the `release-X` branches into this repo's [`content`](./content) folder, separated by versions, where it can be processed by Hugo.
-
-## Step 3: Install npm dependencies
+## Step 3: Sposta i file del sito (l'intera cartella Html) in questa cartella della tua macchina Ubuntu
 
 ```sh
-npm i
+cd /var/www
 ```
 
-## Step 4: Run Hugo in server mode
+## Step 4: Riavvia Apache2
 
 ```sh
-make serve
+service apache2 restart
 ```
-
-This starts up the local Hugo server on http://localhost:1313. As you make changes, the site refreshes automatically in your browser.
-
-## Checking links
-
-To run the link checker for the Harbor website:
-
-```sh
-make check-internal-links
-```
-
-This command builds the site (including drafts and future content), downloads the [htmltest](https://github.com/wjdp/htmltest) link checker into your local directory, and runs the checker in accordance with the configuration specified in [`.htmltest.yml`](./.htmltest.yml). Only internal links are checked and all errors are piped to stdout.
